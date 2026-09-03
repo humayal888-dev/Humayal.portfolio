@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humayal Ahmed — Web Developer &amp; Science Student Portfolio</title>
+<meta name="description" content="Portfolio of Humayal Ahmed, a science student and web developer learning HTML, CSS, JavaScript and AI. Explore projects, skills and get in touch.">
+<meta name="keywords" content="Humayal Ahmed, web developer portfolio, science student developer, HTML CSS JavaScript projects, beginner web developer">
+<meta name="author" content="Humayal Ahmed">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#10131f">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Humayal Ahmed — Web Developer & Science Student">
+<meta property="og:description" content="Science student and web developer learning to build with code and AI. See projects, skills and a way to get in touch.">
+<meta property="og:site_name" content="Humayal Ahmed Portfolio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Humayal Ahmed — Web Developer & Science Student">
+<meta name="twitter:description" content="Science student and web developer learning to build with code and AI.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ffc145'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' font-family='monospace' fill='%2310131f'%3EH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Humayal Ahmed",
+  "jobTitle": "Web Developer",
+  "description": "Science student and web developer learning HTML, CSS, JavaScript and AI-assisted coding.",
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "Artificial Intelligence"]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#10131f;
+    --surface:#1a1f35;
+    --surface-alt:#232a47;
+    --text:#f4f2ed;
+    --muted:#a6acc4;
+    --amber:#ffc145;
+    --teal:#3fe0c5;
+    --coral:#ff6b6b;
+    --violet:#9d8cff;
+    --border:rgba(244,242,237,0.12);
+    --radius:16px;
+    --display:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 85% -10%, rgba(157,140,255,0.18), transparent 45%),
+      radial-gradient(circle at -10% 40%, rgba(63,224,197,0.14), transparent 45%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:var(--display); line-height:1.15; margin:0 0 .5em; }
+  p{ margin:0 0 1em; color:var(--muted); }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button, input, textarea{ font-family:inherit; }
+
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+    background:var(--amber); color:#10131f; padding:.75em 1em;
+    border-radius:0 0 8px 0; font-family:var(--mono); font-weight:600; z-index:200;
+  }
+  .skip-link:focus{ left:0; top:0; }
+
+  :focus-visible{ outline:3px solid var(--teal); outline-offset:3px; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 1.5rem; }
+
+  /* ===== Header / Nav ===== */
+  header.site-header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(16,19,31,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem 1.5rem; max-width:1080px; margin:0 auto;
+  }
+  .brand{
+    font-family:var(--mono); font-weight:600; font-size:1.05rem;
+    text-decoration:none; display:flex; align-items:center; gap:.5rem;
+  }
+  .brand .dot{ width:.6em; height:.6em; border-radius:50%; background:var(--amber); display:inline-block; }
+
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--border); border-radius:8px;
+    color:var(--text); width:42px; height:42px; cursor:pointer; font-size:1.1rem;
+  }
+
+  nav.primary-nav ul{ display:flex; gap:.5rem; }
+  nav.primary-nav a{
+    text-decoration:none; font-family:var(--mono); font-size:.9rem;
+    padding:.5rem .9rem; border-radius:999px; color:var(--muted);
+    transition:background .2s, color .2s;
+  }
+  nav.primary-nav a:hover{ color:var(--text); background:var(--surface-alt); }
+  nav.primary-nav a[aria-current="page"]{ color:#10131f; background:var(--amber); }
+
+  /* ===== Page switching ===== */
+  .page{ display:none; animation:fadein .5s ease; }
+  .page.active{ display:block; }
+  @keyframes fadein{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none; } }
+
+  main{ min-height:70vh; }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:4.5rem 0 3rem; display:grid; gap:2.5rem;
+    grid-template-columns:1.1fr .9fr; align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:.8rem; color:var(--teal);
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:.75rem; display:inline-block;
+  }
+  .hero h1{ font-size:clamp(2.1rem, 5vw, 3.2rem); }
+  .hero h1 span{ color:var(--amber); }
+  .hero .lede{ font-size:1.05rem; max-width:42ch; }
+
+  .terminal{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    font-family:var(--mono); font-size:.85rem; overflow:hidden;
+    box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex; gap:.4rem; padding:.7rem .9rem; background:var(--surface-alt);
+    border-bottom:1px solid var(--border);
+  }
+  .terminal-bar span{ width:11px; height:11px; border-radius:50%; }
+  .terminal-bar span:nth-child(1){ background:var(--coral); }
+  .terminal-bar span:nth-child(2){ background:var(--amber); }
+  .terminal-bar span:nth-child(3){ background:var(--teal); }
+  .terminal-body{ padding:1.1rem; min-height:9.5rem; color:var(--teal); }
+  .terminal-body .line-muted{ color:var(--muted); }
+  .cursor{ display:inline-block; width:.55em; background:var(--amber); animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .cta-row{ display:flex; gap:.9rem; margin-top:1.6rem; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono);
+    font-size:.9rem; padding:.75rem 1.3rem; border-radius:999px; text-decoration:none;
+    border:1px solid transparent; cursor:pointer; transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--amber); color:#10131f; font-weight:600; }
+  .btn-ghost{ border-color:var(--border); color:var(--text); background:transparent; }
+
+  .avatar-figure{ text-align:center; margin:0; }
+  .avatar-figure figcaption{ font-family:var(--mono); font-size:.75rem; color:var(--muted); margin-top:.6rem; }
+
+  /* ===== Section shells ===== */
+  section{ padding:3rem 0; border-top:1px solid var(--border); }
+  section > .wrap > h2{ font-size:clamp(1.5rem, 3.5vw, 2.1rem); }
+  .section-tag{ font-family:var(--mono); color:var(--violet); font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; }
+
+  /* ===== About / skills ===== */
+  .about-grid{ display:grid; gap:2rem; grid-template-columns:1fr 1fr; align-items:start; }
+  .tag-list{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
+  .tag-list li{
+    font-family:var(--mono); font-size:.8rem; padding:.45rem .8rem; border-radius:8px;
+    border:1px dashed var(--border); color:var(--text); background:var(--surface);
+  }
+  .tag-list li:nth-child(4n+1){ border-color:var(--amber); }
+  .tag-list li:nth-child(4n+2){ border-color:var(--teal); }
+  .tag-list li:nth-child(4n+3){ border-color:var(--coral); }
+  .tag-list li:nth-child(4n+4){ border-color:var(--violet); }
+
+  .fact-list{ display:grid; gap:.9rem; }
+  .fact-list li{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px;
+    padding:.9rem 1rem; display:flex; gap:.8rem; align-items:flex-start;
+  }
+  .fact-list b{ color:var(--amber); font-family:var(--mono); font-size:.8rem; }
+
+  /* ===== Projects ===== */
+  .project-grid{ display:grid; gap:1.5rem; grid-template-columns:repeat(3, 1fr); margin-top:1.5rem; }
+  .project-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .project-card figure{ margin:0; background:var(--surface-alt); padding:1.5rem; }
+  .project-card .card-body{ padding:1.1rem 1.2rem 1.4rem; display:flex; flex-direction:column; gap:.5rem; flex:1; }
+  .project-card h3{ font-size:1.05rem; }
+  .project-card p{ font-size:.9rem; margin-bottom:.4rem; }
+  .status-pill{
+    align-self:flex-start; font-family:var(--mono); font-size:.7rem; padding:.25rem .6rem;
+    border-radius:999px; background:rgba(63,224,197,0.15); color:var(--teal); margin-top:auto;
+  }
+
+  /* ===== Contact page ===== */
+  .contact-layout{ display:grid; gap:2.5rem; grid-template-columns:1fr 1fr; align-items:start; }
+  form.contact-form{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.6rem; display:grid; gap:1.1rem;
+  }
+  .field{ display:grid; gap:.4rem; }
+  .field label{ font-family:var(--mono); font-size:.8rem; color:var(--teal); }
+  .field input, .field textarea{
+    background:var(--bg); border:1px solid var(--border); border-radius:10px;
+    color:var(--text); padding:.75rem .9rem; font-size:.95rem;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--amber); }
+  .field textarea{ resize:vertical; min-height:120px; }
+  .form-msg{ font-family:var(--mono); font-size:.85rem; min-height:1.2em; }
+  .form-msg.success{ color:var(--teal); }
+  .form-msg.error{ color:var(--coral); }
+
+  address{ font-style:normal; }
+  .contact-info li{ display:flex; gap:.7rem; margin-bottom:1rem; align-items:flex-start; }
+  .contact-info .label{ font-family:var(--mono); font-size:.75rem; color:var(--muted); display:block; }
+
+  /* ===== Footer ===== */
+  footer{ border-top:1px solid var(--border); padding:2rem 0; margin-top:2rem; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer p{ margin:0; font-size:.85rem; }
+  .footer-links{ display:flex; gap:1rem; font-family:var(--mono); font-size:.85rem; }
+  .footer-links a{ text-decoration:none; color:var(--muted); }
+  .footer-links a:hover{ color:var(--amber); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 800px){
+    .hero{ grid-template-columns:1fr; padding-top:2.5rem; }
+    .about-grid, .contact-layout{ grid-template-columns:1fr; }
+    .project-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .nav-toggle{ display:block; }
+    nav.primary-nav{
+      position:absolute; top:100%; left:0; right:0; background:var(--surface);
+      border-bottom:1px solid var(--border); display:none; padding:1rem 1.5rem;
+    }
+    nav.primary-nav.open{ display:block; }
+    nav.primary-nav ul{ flex-direction:column; }
+    nav.primary-nav a{ display:block; }
+    .project-grid{ grid-template-columns:1fr; }
+    .cta-row{ flex-direction:column; align-items:stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a class="brand" href="#home"><span class="dot" aria-hidden="true"></span>humayal<span style="color:var(--amber)">.dev</span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">☰</button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <ul>
+        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#contact" data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ============ PAGE 1: HOME ============ -->
+  <section id="home" class="page">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Science student · Web developer</span>
+        <h1>Hi, I'm <span>Humayal</span>.<br>I build things and study how the world works.</h1>
+        <p class="lede">I'm learning to turn ideas into working websites — mixing a science student's curiosity with a developer's habit of experimenting, breaking things, and fixing them again with the help of AI.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact" data-page="contact">Get in touch</a>
+          <a class="btn btn-ghost" href="#projects-heading">See my projects</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div class="line-muted">$ whoami</div>
+            <div id="typedLine">&nbsp;</div>
+            <div><span class="cursor">&nbsp;</span></div>
+          </div>
+        </div>
+        <figure class="avatar-figure">
+          <img width="120" height="120" style="margin:1.2rem auto 0;"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23232a47' stroke='%23ffc145' stroke-width='3'/%3E%3Ccircle cx='60' cy='48' r='20' fill='%233fe0c5'/%3E%3Cpath d='M20 108c6-24 28-36 40-36s34 12 40 36' fill='%239d8cff'/%3E%3C/svg%3E"
+               alt="Illustrated avatar representing Humayal, a science student and web developer">
+          <figcaption>Humayal — building &amp; learning, one commit at a time</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <section aria-labelledby="about-heading">
+      <div class="wrap about-grid">
+        <div>
+          <span class="section-tag">About</span>
+          <h2 id="about-heading">A bit about me</h2>
+          <p>I'm currently studying science while teaching myself web development on the side. I started with plain HTML, and I'm now exploring CSS layouts, JavaScript interactivity, and how AI tools can speed up learning without replacing the understanding.</p>
+          <p>My goal is simple: build real things, get them online, and keep improving them one project at a time.</p>
+          <ul class="tag-list" aria-label="Skills and interests">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Responsive Design</li>
+            <li>Git &amp; GitHub</li>
+            <li>AI-assisted coding</li>
+            <li>Problem solving</li>
+            <li>Science research</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="fact-list">
+            <li><b>Currently</b><span>Learning HTML, CSS &amp; JavaScript from the ground up.</span></li>
+            <li><b>Interested in</b><span>Where science, logic and code overlap.</span></li>
+            <li><b>Tools</b><span>VS Code, browser dev tools, and AI pair-programming.</span></li>
+            <li><b>Next goal</b><span>Ship more small projects and learn a JS framework.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+      <div class="wrap">
+        <span class="section-tag">Work</span>
+        <h2 id="projects-heading">Projects</h2>
+        <p>A few things I've built while learning. More are on the way.</p>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Crect x='4' y='4' width='92' height='62' rx='8' fill='%2310131f' stroke='%23ffc145' stroke-width='2'/%3E%3Crect x='4' y='4' width='92' height='14' rx='8' fill='%23ffc145'/%3E%3Ccircle cx='14' cy='11' r='2.4' fill='%2310131f'/%3E%3Ccircle cx='22' cy='11' r='2.4' fill='%2310131f'/%3E%3Crect x='14' y='30' width='72' height='6' rx='3' fill='%233fe0c5'/%3E%3Crect x='14' y='42' width='50' height='6' rx='3' fill='%239d8cff'/%3E%3C/svg%3E"
+                   alt="Browser window icon representing a personal profile portfolio page">
+            </figure>
+            <div class="card-body">
+              <h3>Personal Profile Page</h3>
+              <p>My very first project — a single HTML &amp; CSS page introducing who I am and what I'm learning.</p>
+              <span class="status-pill">Shipped</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Crect x='4' y='4' width='92' height='62' rx='8' fill='%2310131f' stroke='%233fe0c5' stroke-width='2'/%3E%3Cpolyline points='14,50 32,32 46,44 62,20 86,30' fill='none' stroke='%233fe0c5' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='86' cy='30' r='4' fill='%23ffc145'/%3E%3C/svg%3E"
+                   alt="Line chart icon representing a science and coding notes tracker project">
+            </figure>
+            <div class="card-body">
+              <h3>Study &amp; Code Notes Tracker</h3>
+              <p>A simple page for logging what I learn each week across science topics and coding concepts.</p>
+              <span class="status-pill">In progress</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <figure>
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Crect x='4' y='4' width='92' height='62' rx='8' fill='%2310131f' stroke='%23ff6b6b' stroke-width='2'/%3E%3Crect x='34' y='18' width='32' height='24' rx='4' fill='%23ff6b6b'/%3E%3Cline x1='50' y1='10' x2='50' y2='18' stroke='%23ff6b6b' stroke-width='3'/%3E%3Ccircle cx='42' cy='30' r='2.6' fill='%2310131f'/%3E%3Ccircle cx='58' cy='30' r='2.6' fill='%2310131f'/%3E%3Cline x1='24' y1='48' x2='76' y2='48' stroke='%239d8cff' stroke-width='3'/%3E%3C/svg%3E"
+                   alt="Robot chip icon representing an AI-assisted coding experiment project">
+            </figure>
+            <div class="card-body">
+              <h3>AI Pair-Coding Experiments</h3>
+              <p>Small demos exploring how AI tools can help explain, debug and speed up learning to code.</p>
+              <span class="status-pill">Ongoing</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ PAGE 2: CONTACT ============ -->
+  <section id="contact" class="page">
+    <div class="wrap" style="padding-top:3.5rem;">
+      <span class="section-tag">Get in touch</span>
+      <h2>Let's talk</h2>
+      <p>Have a question, feedback, or an idea to collaborate on? Send a message below.</p>
+
+      <div class="contact-layout">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required minlength="2">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required minlength="10"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside aria-labelledby="reach-heading">
+          <h3 id="reach-heading">Other ways to reach me</h3>
+          <address>
+            <ul class="contact-info">
+              <li>
+                <div>
+                  <span class="label">Email</span>
+                  <a href="mailto:hello@humayal.dev">hello@humayal.dev</a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="label">GitHub</span>
+                  <a href="https://github.com/" target="_blank" rel="noopener noreferrer">github.com/humayal</a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span class="label">Based in</span>
+                  <span>Rawalpindi, Punjab, Pakistan</span>
+                </div>
+              </li>
+            </ul>
+          </address>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <p>&copy; <span id="year"></span> Humayal Ahmed. Built with HTML, CSS &amp; JavaScript.</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#home" data-page="home">Home</a>
+      <a href="#contact" data-page="contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var pages = document.querySelectorAll(".page");
+  var navLinks = document.querySelectorAll("[data-page]");
+  var navToggle = document.getElementById("navToggle");
+  var primaryNav = document.getElementById("primaryNav");
+
+  function showPage(id){
+    if(!document.getElementById(id)) id = "home";
+    pages.forEach(function(p){
+      p.classList.toggle("active", p.id === id);
+    });
+    navLinks.forEach(function(a){
+      if(a.dataset.page === id){
+        a.setAttribute("aria-current", "page");
+      } else {
+        a.removeAttribute("aria-current");
+      }
+    });
+    document.title = (id === "contact")
+      ? "Contact — Humayal Ahmed"
+      : "Humayal Ahmed — Web Developer & Science Student Portfolio";
+  }
+
+  function routeFromHash(){
+    var id = (location.hash || "#home").replace("#", "");
+    showPage(id);
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+
+  window.addEventListener("hashchange", routeFromHash);
+  routeFromHash();
+
+  // Mobile nav toggle
+  navToggle.addEventListener("click", function(){
+    var isOpen = primaryNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+  navLinks.forEach(function(a){
+    a.addEventListener("click", function(){
+      primaryNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Typing effect in hero terminal
+  var typedLine = document.getElementById("typedLine");
+  var fullText = "Humayal — science student & web developer";
+  if(typedLine && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var i = 0;
+    (function type(){
+      typedLine.textContent = fullText.slice(0, i);
+      i++;
+      if(i <= fullText.length){ setTimeout(type, 45); }
+    })();
+  } else if(typedLine){
+    typedLine.textContent = fullText;
+  }
+
+  // Contact form handling (front-end only demo)
+  var form = document.getElementById("contactForm");
+  var formMsg = document.getElementById("formMsg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var message = form.message.value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if(name.length < 2 || !emailOk || message.length < 10){
+      formMsg.textContent = "Please fill in a valid name, email and a message (10+ characters).";
+      formMsg.className = "form-msg error";
+      return;
+    }
+
+    formMsg.textContent = "Thanks, " + name + "! Your message has been captured. (Connect a backend or form service to actually deliver it.)";
+    formMsg.className = "form-msg success";
+    form.reset();
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

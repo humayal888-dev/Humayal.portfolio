@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1 id="count">0</h1>
+<button id="countBtn">Click Me!</button>
+ <button id="colorBtn">Change Color</button>
+    <script>
+       let count = 0;
+let display = document.getElementById("count");
+let btn= document.getElementById("countBtn");
+btn.addEventListener("click", function() {
+    count = count + 1;
+    display.textContent= count;
+});
+let colors = ["#FF6B6B", "#4ECDC4", "#45B7D1",
+                "#96CEB4", "#FFEAA7", "#DDA0DD"];
+let index = 0;
+letbtn= document.getElementById("colorBtn");
+btn.addEventListener("click", function() {
+    document.body.style.backgroundColor= colors[index];
+    index = index + 1;
+    if (index >= colors.length) {
+      index = 0;
+    }
+});
+    </script>
+</body>
+</html>
+ 

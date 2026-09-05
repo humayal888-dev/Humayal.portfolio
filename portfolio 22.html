@@ -1,0 +1,642 @@
+Here is the updated, single-file HTML code for your portfolio.
+
+### What's New & Upgraded:
+
+* **Multiple Pages / Views**: Expanded navigation bar including **Home**, **Medical & Science**, **Coding & Skills**, and **Contact** pages.
+
+
+* **New Themes & Interactive Theme Selector**: Added a custom theme switcher at the top-right (**Cyber Midnight**, **Emerald Health**, and **Neon Purple**).
+* **Interactive Skill Filters**: Filter your technical and medical capabilities in real-time (**All**, **Web Dev**, **Medical**, **Tools**).
+* **Expanded Medical & Coding Content**: Highlights your medical background (Anatomy, Biology, Clinical Research) alongside web development (HTML, CSS, JS, AI pair-programming).
+
+
+* **Enhanced Navigation & Typography**: Features glowing, vibrant fonts (`Space Grotesk` & `JetBrains Mono`) with subtle color accents and clean backdrops.
+
+
+* **Mobile Friendly & Responsive**: Optimized for phones, tablets, and desktops with smooth collapsible navigation.
+
+
+* **Modern & Balanced Animations**: Clean typing terminals, glowing subtle borders, and gentle transitions—no over-the-top distraction.
+
+
+
+---
+
+### Step-by-Step Instructions to Update in VS Code & Git
+
+:
+
+1. Open your portfolio file in **VS Code**.
+
+
+2. Select all existing text (`Ctrl + A` or `Cmd + A`) and replace it by pasting the entire code snippet below.
+
+
+3. Save the file (`Ctrl + S` or `Cmd + S`).
+
+
+4. Open your VS Code integrated terminal (`Ctrl + ~`) and run these Git commands to commit and push the changes to GitHub:
+
+
+```bash
+git add .
+git commit -m "Upgrade portfolio: Multi-page layout, themes, skills filter, and medical background"
+git push origin main
+
+```
+
+
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humayal Ahmed — Web Developer & Medical Science Enthusiast</title>
+<meta name="description" content="Portfolio of Humayal Ahmed, showcasing web development, medical science expertise, and AI-assisted coding projects.">
+<meta name="keywords" content="Humayal Ahmed, web developer, medical science, healthcare technology, HTML, CSS, JavaScript, AI coding">
+<meta name="author" content="Humayal Ahmed">
+<meta name="robots" content="index, follow">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ffc145'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' font-family='monospace' fill='%2310131f'%3EH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #10131f;
+    --surface: #1a1f35;
+    --surface-alt: #232a47;
+    --text: #f4f2ed;
+    --muted: #a6acc4;
+    --amber: #ffc145;
+    --teal: #3fe0c5;
+    --coral: #ff6b6b;
+    --violet: #9d8cff;
+    --border: rgba(244, 242, 237, 0.12);
+    --radius: 16px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --glow: rgba(63, 224, 197, 0.25);
+  }
+
+  [data-theme="emerald"] {
+    --bg: #0b1d1a;
+    --surface: #122c27;
+    --surface-alt: #1a3c36;
+    --text: #e8f7f4;
+    --muted: #8ebbb3;
+    --amber: #22d3ee;
+    --teal: #10b981;
+    --coral: #f43f5e;
+    --violet: #a855f7;
+    --border: rgba(232, 247, 244, 0.12);
+    --glow: rgba(16, 185, 129, 0.3);
+  }
+
+  [data-theme="purple"] {
+    --bg: #160d27;
+    --surface: #23163a;
+    --surface-alt: #311f50;
+    --text: #f3ebfc;
+    --muted: #b7a4d6;
+    --amber: #f43f5e;
+    --teal: #38bdf8;
+    --coral: #fb923c;
+    --violet: #c084fc;
+    --border: rgba(243, 235, 252, 0.12);
+    --glow: rgba(192, 132, 252, 0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0 0 0.5em; }
+  p { margin: 0 0 1em; color: var(--muted); }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  button, input, textarea, select { font-family: inherit; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: auto;
+    background: var(--amber); color: #10131f; padding: .75em 1em;
+    border-radius: 0 0 8px 0; font-family: var(--mono); font-weight: 600; z-index: 200;
+  }
+  .skip-link:focus { left: 0; top: 0; }
+
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Navigation Bar */
+  header.site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(16, 19, 31, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s ease;
+  }
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; max-width: 1080px; margin: 0 auto;
+  }
+  .brand {
+    font-family: var(--mono); font-weight: 700; font-size: 1.1rem;
+    text-decoration: none; display: flex; align-items: center; gap: .5rem;
+    letter-spacing: -0.02em;
+  }
+  .brand .dot { width: .6em; height: .6em; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+
+  .nav-controls { display: flex; align-items: center; gap: 1rem; }
+
+  .theme-select {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .nav-toggle {
+    display: none; background: none; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); width: 42px; height: 42px; cursor: pointer; font-size: 1.1rem;
+  }
+
+  nav.primary-nav ul { display: flex; gap: .3rem; }
+  nav.primary-nav a {
+    text-decoration: none; font-family: var(--mono); font-size: .85rem;
+    padding: .5rem .8rem; border-radius: 999px; color: var(--muted);
+    transition: all .2s ease;
+  }
+  nav.primary-nav a:hover { color: var(--teal); background: var(--surface-alt); }
+  nav.primary-nav a[aria-current="page"] { color: #10131f; background: var(--teal); font-weight: 600; box-shadow: 0 0 12px var(--glow); }
+
+  /* Page Sections */
+  .page { display: none; animation: fadeIn .4s cubic-bezier(0.16, 1, 0.3, 1); min-height: 75vh; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Hero Section */
+  .hero {
+    padding: 4rem 0 3rem; display: grid; gap: 2.5rem;
+    grid-template-columns: 1.1fr .9fr; align-items: center;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: .85rem; color: var(--teal);
+    letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem; display: inline-block;
+    font-weight: 600;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.02em; }
+  .hero h1 span.highlight-amber { color: var(--amber); }
+  .hero h1 span.highlight-teal { color: var(--teal); }
+  .hero .lede { font-size: 1.1rem; max-width: 44ch; color: var(--muted); }
+
+  .terminal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    font-family: var(--mono); font-size: .85rem; overflow: hidden;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+  }
+  .terminal-bar {
+    display: flex; gap: .4rem; padding: .7rem .9rem; background: var(--surface-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar span { width: 11px; height: 11px; border-radius: 50%; }
+  .terminal-bar span:nth-child(1) { background: var(--coral); }
+  .terminal-bar span:nth-child(2) { background: var(--amber); }
+  .terminal-bar span:nth-child(3) { background: var(--teal); }
+  .terminal-body { padding: 1.2rem; min-height: 10rem; color: var(--teal); }
+  .terminal-body .line-muted { color: var(--muted); }
+  .cursor { display: inline-block; width: .55em; background: var(--amber); animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .cta-row { display: flex; gap: .9rem; margin-top: 1.8rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem; font-family: var(--mono);
+    font-size: .9rem; padding: .75rem 1.4rem; border-radius: 999px; text-decoration: none;
+    border: 1px solid transparent; cursor: pointer; transition: all .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--teal); color: #10131f; font-weight: 600; box-shadow: 0 4px 15px var(--glow); }
+  .btn-secondary { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost { border-color: var(--border); color: var(--text); background: transparent; }
+
+  /* Generic Section Layouts */
+  section.inner-section { padding: 3rem 0; }
+  .section-tag { font-family: var(--mono); color: var(--violet); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+
+  /* Skills & Filters */
+  .filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .filter-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+    padding: .4rem .9rem; border-radius: 999px; font-family: var(--mono); font-size: .8rem;
+    cursor: pointer; transition: all .2s;
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--surface-alt); color: var(--amber); border-color: var(--amber); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem;
+    transition: transform .2s, border-color .2s;
+  }
+  .skill-card:hover { transform: translateY(-3px); border-color: var(--teal); }
+  .skill-card h4 { font-family: var(--mono); margin: 0 0 .3rem; color: var(--teal); font-size: .95rem; }
+  .skill-card p { font-size: .85rem; margin: 0; }
+
+  /* Cards Grid */
+  .grid-3 { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr); margin-top: 1.5rem; }
+  .grid-2 { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.4rem; display: flex; flex-direction: column; transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--violet); }
+  .card h3 { font-size: 1.1rem; color: var(--text); }
+  .card-tag { font-family: var(--mono); font-size: .75rem; color: var(--amber); margin-bottom: .5rem; display: block; }
+  
+  /* Contact Form */
+  .contact-layout { display: grid; gap: 2.5rem; grid-template-columns: 1fr 1fr; align-items: start; margin-top: 1.5rem; }
+  form.contact-form {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.6rem; display: grid; gap: 1.1rem;
+  }
+  .field { display: grid; gap: .4rem; }
+  .field label { font-family: var(--mono); font-size: .8rem; color: var(--teal); }
+  .field input, .field textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text); padding: .75rem .9rem; font-size: .95rem;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--amber); }
+  .field textarea { resize: vertical; min-height: 120px; }
+  .form-msg { font-family: var(--mono); font-size: .85rem; min-height: 1.2em; }
+  .form-msg.success { color: var(--teal); }
+  .form-msg.error { color: var(--coral); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+  .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer p { margin: 0; font-size: .85rem; }
+
+  /* Responsive Design */
+  @media (max-width: 850px) {
+    .hero { grid-template-columns: 1fr; padding-top: 2rem; }
+    .grid-3, .grid-2, .contact-layout { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-toggle { display: block; }
+    nav.primary-nav {
+      position: absolute; top: 100%; left: 0; right: 0; background: var(--surface);
+      border-bottom: 1px solid var(--border); display: none; padding: 1rem 1.5rem;
+    }
+    nav.primary-nav.open { display: block; }
+    nav.primary-nav ul { flex-direction: column; }
+    nav.primary-nav a { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a class="brand" href="#home"><span class="dot" aria-hidden="true"></span>humayal<span style="color:var(--amber)">.dev</span></a>
+    
+    <div class="nav-controls">
+      <select id="themeSelector" class="theme-select" aria-label="Select theme">
+        <option value="dark">Cyber Midnight</option>
+        <option value="emerald">Emerald Health</option>
+        <option value="purple">Neon Purple</option>
+      </select>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">☰</button>
+    </div>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <ul>
+        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#medical" data-page="medical">Medical &amp; Science</a></li>
+        <li><a href="#coding" data-page="coding">Coding &amp; Skills</a></li>
+        <li><a href="#contact" data-page="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ============ PAGE 1: HOME ============ -->
+  <section id="home" class="page">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Medical Student · Web Developer</span>
+        <h1>Bridging <span class="highlight-teal">Healthcare Science</span> &amp; <span class="highlight-amber">Digital Code</span>.</h1>
+        <p class="lede">I am Humayal Ahmed. Driven by a passion for medical research and web development, I build responsive digital solutions while exploring the frontiers of healthcare technology.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#coding" data-page="coding">Explore Coding Skills</a>
+          <a class="btn btn-secondary" href="#medical" data-page="medical">Medical Research</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="terminal" aria-hidden="true">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div class="line-muted">$ initialize portfolio --user "Humayal Ahmed"</div>
+            <div id="typedLine">&nbsp;</div>
+            <div><span class="cursor">&nbsp;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="inner-section">
+      <div class="wrap">
+        <span class="section-tag">Highlights</span>
+        <h2>Dual Expertise Focus</h2>
+        <div class="grid-2">
+          <div class="card">
+            <span class="card-tag">MEDICAL SCIENCE</span>
+            <h3>Healthcare &amp; Biological Sciences</h3>
+            <p>Dedicated to medical studies, health research, and human anatomy. Aiming to bridge medical insights with modern software tools.</p>
+          </div>
+          <div class="card">
+            <span class="card-tag">DEVELOPMENT</span>
+            <h3>Web &amp; AI-Assisted Engineering</h3>
+            <p>Designing modern, responsive websites using HTML, CSS, JavaScript, and AI-assisted workflows for clean, efficient user experiences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ PAGE 2: MEDICAL & SCIENCE ============ -->
+  <section id="medical" class="page">
+    <div class="wrap inner-section">
+      <span class="section-tag">Healthcare &amp; Research</span>
+      <h2>Medical Work &amp; Scientific Studies</h2>
+      <p>Exploring the biological sciences and applying analytical logic to medical concepts.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-tag">ANATOMY &amp; PHYSIOLOGY</span>
+          <h3>Human Biological Systems</h3>
+          <p>Detailed study of human anatomy, structural biological functions, and systemic medical processes.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">RESEARCH</span>
+          <h3>Medical Data &amp; Documentation</h3>
+          <p>Analyzing scientific papers, collecting clinical notes, and translating medical findings into structured records.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">HEALTH TECH</span>
+          <h3>Digital Health Concepts</h3>
+          <p>Investigating how modern software, AI, and responsive web platforms improve medical awareness and patient communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 3: CODING & SKILLS ============ -->
+  <section id="coding" class="page">
+    <div class="wrap inner-section">
+      <span class="section-tag">Technical Capabilities</span>
+      <h2>Skills &amp; Developer Passion</h2>
+      <p>Interactive overview of technical stacks, tools, and health science capabilities.</p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Skills</button>
+        <button class="filter-btn" data-filter="web">Web Dev</button>
+        <button class="filter-btn" data-filter="medical">Medical Science</button>
+        <button class="filter-btn" data-filter="tools">Tools &amp; Workflow</button>
+      </div>
+
+      <div class="skills-grid" id="skillsGrid">
+        <div class="skill-card" data-category="web">
+          <h4>HTML5 &amp; Semantic Web</h4>
+          <p>Building clean, structured, and accessible document foundations.</p>
+        </div>
+        <div class="skill-card" data-category="web">
+          <h4>CSS3 &amp; Modern Layouts</h4>
+          <p>Responsive design using Flexbox, Grid, custom properties, and animations.</p>
+        </div>
+        <div class="skill-card" data-category="web">
+          <h4>JavaScript (ES6+)</h4>
+          <p>Dynamic page behavior, state management, and DOM manipulation.</p>
+        </div>
+        <div class="skill-card" data-category="medical">
+          <h4>Medical Terminology</h4>
+          <p>Strong understanding of medical terminology, bio-structures, and concepts.</p>
+        </div>
+        <div class="skill-card" data-category="medical">
+          <h4>Scientific Analysis</h4>
+          <p>Systematic research, hypothesis testing, and observational methodology.</p>
+        </div>
+        <div class="skill-card" data-category="tools">
+          <h4>Git &amp; GitHub</h4>
+          <p>Version control, tracking changes, and hosting via GitHub Pages.</p>
+        </div>
+        <div class="skill-card" data-category="tools">
+          <h4>VS Code Workflow</h4>
+          <p>Configured editor with efficient extensions, snippets, and Git integration.</p>
+        </div>
+        <div class="skill-card" data-category="tools">
+          <h4>AI Pair-Programming</h4>
+          <p>Utilizing AI assistants to accelerate code generation and troubleshooting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 4: CONTACT ============ -->
+  <section id="contact" class="page">
+    <div class="wrap inner-section">
+      <span class="section-tag">Get in touch</span>
+      <h2>Let's Collaborate</h2>
+      <p>Have a question, feedback on a project, or a medical-tech inquiry? Send a message below.</p>
+
+      <div class="contact-layout">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required minlength="2" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required minlength="10" placeholder="Write your message here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside>
+          <h3>Other Ways to Connect</h3>
+          <ul style="display: grid; gap: 1rem; margin-top: 1rem;">
+            <li>
+              <span style="font-family: var(--mono); font-size: .8rem; color: var(--muted); display: block;">Email</span>
+              <a href="mailto:hello@humayal.dev" style="color: var(--teal); font-weight: 500;">hello@humayal.dev</a>
+            </li>
+            <li>
+              <span style="font-family: var(--mono); font-size: .8rem; color: var(--muted); display: block;">GitHub</span>
+              <a href="https://github.com/humayal" target="_blank" rel="noopener noreferrer" style="color: var(--teal); font-weight: 500;">github.com/humayal</a>
+            </li>
+            <li>
+              <span style="font-family: var(--mono); font-size: .8rem; color: var(--muted); display: block;">Location</span>
+              <span>Rawalpindi, Punjab, Pakistan</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <p>&copy; <span id="year"></span> Humayal Ahmed. Built with HTML, CSS &amp; JavaScript.</p>
+    <nav aria-label="Footer Navigation">
+      <a href="#home" data-page="home" style="font-family: var(--mono); font-size: 0.85rem; color: var(--muted); text-decoration: none;">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var pages = document.querySelectorAll(".page");
+  var navLinks = document.querySelectorAll("[data-page]");
+  var navToggle = document.getElementById("navToggle");
+  var primaryNav = document.getElementById("primaryNav");
+  var themeSelector = document.getElementById("themeSelector");
+
+  // Multi-page navigation router
+  function showPage(id){
+    if(!document.getElementById(id)) id = "home";
+    pages.forEach(function(p){
+      p.classList.toggle("active", p.id === id);
+    });
+    navLinks.forEach(function(a){
+      if(a.dataset.page === id){
+        a.setAttribute("aria-current", "page");
+      } else {
+        a.removeAttribute("aria-current");
+      }
+    });
+    document.title = id.charAt(0).toUpperCase() + id.slice(1) + " — Humayal Ahmed";
+  }
+
+  function routeFromHash(){
+    var id = (location.hash || "#home").replace("#", "");
+    showPage(id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  window.addEventListener("hashchange", routeFromHash);
+  routeFromHash();
+
+  // Mobile navigation drawer toggle
+  navToggle.addEventListener("click", function(){
+    var isOpen = primaryNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.forEach(function(a){
+    a.addEventListener("click", function(){
+      primaryNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Theme selector switcher
+  themeSelector.addEventListener("change", function(e){
+    document.documentElement.setAttribute("data-theme", e.target.value);
+  });
+
+  // Interactive skills filter
+  var filterBtns = document.querySelectorAll(".filter-btn");
+  var skillCards = document.querySelectorAll(".skill-card");
+
+  filterBtns.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      filterBtns.forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      
+      var filter = btn.dataset.filter;
+      skillCards.forEach(function(card){
+        if(filter === "all" || card.dataset.category === filter){
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+
+  // Typing effect in hero terminal
+  var typedLine = document.getElementById("typedLine");
+  var fullText = "Humayal Ahmed — Medical Science & Web Developer";
+  if(typedLine && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    var i = 0;
+    (function type(){
+      typedLine.textContent = fullText.slice(0, i);
+      i++;
+      if(i <= fullText.length){ setTimeout(type, 45); }
+    })();
+  } else if(typedLine){
+    typedLine.textContent = fullText;
+  }
+
+  // Contact form submission logic
+  var form = document.getElementById("contactForm");
+  var formMsg = document.getElementById("formMsg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var message = form.message.value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if(name.length < 2 || !emailOk || message.length < 10){
+      formMsg.textContent = "Please fill in a valid name, email, and message (10+ characters).";
+      formMsg.className = "form-msg error";
+      return;
+    }
+
+    formMsg.textContent = "Thank you, " + name + "! Your message has been sent successfully.";
+    formMsg.className = "form-msg success";
+    form.reset();
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
+
+```
